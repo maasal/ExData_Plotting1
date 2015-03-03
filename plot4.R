@@ -13,11 +13,19 @@ subdata$DayTime <- subdata$Day + subdata$Hour
 
 
 #write the plot to png file with legend 
-png(file="plot3.png",width = 480,height=480)
+png(file="plot4.png",width = 480,height=480)
+par(mfrow=c(2,2))
+
+plot(subdata$Global_active_power ~ subdata$DayTime,type = "l", ylab = "Global Active Power",
+     xlab="")
+plot(subdata$Voltage ~ subdata$DayTime, type = "l", ylab="Voltage", xlab="datetime")
 plot(subdata$Sub_metering_1 ~ subdata$DayTime,type = "n", ylab ="Energy sub metering",
      xlab = "")
 points(subdata$Sub_metering_1 ~ subdata$DayTime,type = "l",col=1)
 points(subdata$Sub_metering_2 ~ subdata$DayTime,type = "l",col=2)
 points(subdata$Sub_metering_3 ~ subdata$DayTime,type = "l",col=4)
 legend("topright",legend=c("Sub_metering_1","Sub_metering_2","Sub_metering_3"),lty = 1,col = c(1,2,4))
+plot(subdata$Global_reactive_power ~ subdata$DayTime,type="l",
+     xlab="datetime",ylab="Global_reactive_power")
+
 dev.off()
